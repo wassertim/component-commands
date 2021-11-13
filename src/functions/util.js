@@ -5,11 +5,14 @@ export function convertToHeights(items) {
 }
 
 export const swap = (state, index) => {
-  const copy = [...state.listToSort];
+  const copy = [...state];
   if (index + 1 >= copy.length) {
     return copy;
   }
-  [copy[index], copy[index + 1]] = [copy[index + 1], copy[index]];
+  // [copy[index], copy[index + 1]] = [copy[index + 1], copy[index]];
+  const [i, j] = [copy[index].order, copy[index + 1].order];
+  copy[i].order++;
+  copy[j].order--;
 
   return copy;
 };

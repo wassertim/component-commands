@@ -4,7 +4,7 @@ import { Item } from "./item/item";
 import React from "react";
 
 export function ItemList({ items }) {
-  const heights = convertToHeights(items);
+  const heights = convertToHeights(items.map(i => i.value));
   console.log("items", items);
   const references = {};
 
@@ -19,11 +19,12 @@ export function ItemList({ items }) {
   return (
     <>
       <div className="item-list group">
-        {heights.map((height, i) => {          
+        {heights.map((height, i) => {
           return (
             <Item
               ref={getOrCreateRef(i)}
-              digit={items[i]}              
+              digit={items[i].value}
+              item={items[i]}
               key={i}
               height={height}
             />
