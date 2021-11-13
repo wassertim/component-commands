@@ -1,0 +1,5 @@
+.item-list__item {
+  background-color: turquoise;
+  border: 1px solid black;
+  width: 20px;
+}
