@@ -1,9 +1,10 @@
 import { ItemList } from "./item-list/item-list";
 import { useState } from "react";
+import {runState, run} from "./runners/dumb-runner";
 
 function App() {
   const elements = [1, 12, 5, 3, 11, 7, 8, 4, 15];
-  const [action, setAction] = useState({});
+  const [action, setAction] = useState({});  
 
   return (
     <div className="container">
@@ -27,6 +28,22 @@ function App() {
             onClick={() => setAction({ type: "swap" })}
           >
             Swap
+          </button>
+        </div>
+        <div className="col-auto">
+          <button
+            className="btn btn-primary"
+            onClick={async () => await run(elements, setAction)}
+          >
+            Run
+          </button>
+        </div>
+        <div className="col-auto">
+          <button
+            className="btn btn-primary"
+            onClick={async () => runState.isOnPause = !runState.isOnPause}
+          >
+            Pause/Continue
           </button>
         </div>
       </div>
