@@ -37,7 +37,7 @@ function App() {
           </button>
         </div>
       </div>
-      <ItemList items={state} />
+      <ItemList items={state} swapIndex={swapIndex} />
     </div>
   );
 }
