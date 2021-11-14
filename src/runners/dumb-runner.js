@@ -19,17 +19,20 @@ async function wait() {
 }
 
 export async function run(elements, setAction) {
+  const steps = [];
   let m = elements.length;
   for (let i = 0; i < m; i++) {
     for (let j = 0; j < m - i; j++) {
+      steps.push({ type: "changeSwapIndex", swapIndex: j });
       setAction({ type: "changeSwapIndex", swapIndex: j });
       await delay(1000);
       await wait();
       if (elements[j] > elements[j + 1]) {
         swap(elements, j, j + 1);
-        setAction({type: "swap"});
+        setAction({ type: "swap" });
         await delay(1000);
       }
     }
   }
+  return steps;
 }

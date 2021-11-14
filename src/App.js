@@ -1,10 +1,16 @@
 import { ItemList } from "./item-list/item-list";
 import { useState } from "react";
-import {runState, run} from "./runners/dumb-runner";
+import bubbleSort from "./runners/dumb-runner";
+import insertSort from "./runners/dumb-runner-2";
 
 function App() {
   const elements = [1, 12, 5, 3, 11, 7, 8, 4, 15];
   const [action, setAction] = useState({});  
+  const [curentAlgorithm, setCurentAlgorithm] = useState("bubbleSort");
+  const algoMap = {
+    "bubbleSort": bubbleSort.run,
+    "insertSort": insertSort.run
+  };
 
   return (
     <div className="container">
@@ -33,7 +39,7 @@ function App() {
         <div className="col-auto">
           <button
             className="btn btn-primary"
-            onClick={async () => await run(elements, setAction)}
+            onClick={async () => await algoMap[curentAlgorithm](elements, setAction)}
           >
             Run
           </button>
@@ -47,7 +53,7 @@ function App() {
           </button>
         </div>
       </div>
-      <ItemList items={elements} action={action} />
+      <ItemList items={elements} action={action} />      
     </div>
   );
 }
