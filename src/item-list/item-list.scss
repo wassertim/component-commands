@@ -3,16 +3,17 @@
   justify-content: center;
 }
 
-.group {
-  width: 600px;
-  height: 250px;
+.group {  
+  height: 300px;
+  padding: 20px;
   background: #ddd;
   display: flex;
   flex-direction: row;  
 }
 
 .box {
-  font-size: 18px;
+  text-align: center;
+  font-size: 12px;
   align-self: stretch; 
   transition: transform 300ms ease-in-out; 
     

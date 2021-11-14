@@ -2,12 +2,13 @@ import "./item.css";
 import React from "react";
 
 export const Item = React.forwardRef(({ height, item }, ref) => {
-  const width = 20;
+  const width = 30;
   const margin = 1;
   const style = {
     height: `${height}%`,
     width: `${width}px`,
-    margin: `${margin}px`,
+    "margin-left": `${margin}px`,
+    "margin-right": `${margin}px`,
     transform: `translate(${(item.currentPosition - item.originalPosition) * (width + margin*2)}px)`,
   };
   return (
