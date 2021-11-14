@@ -1,14 +1,6 @@
 import { ItemList } from "./item-list/item-list";
 import { useState } from "react";
-import { swap } from "./functions/util";
-
-function mapToVisualData(l) {
-  return l.map((i, index) => ({
-    originalPosition: index,
-    value: i,
-    currentPosition: index,
-  }));
-}
+import { swap, mapToVisualData } from "./functions/util";
 
 function App() {
   const elements = [1, 12, 5, 3, 11, 7];
