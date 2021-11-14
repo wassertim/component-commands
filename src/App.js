@@ -11,8 +11,9 @@ function mapToVisualData(l) {
 }
 
 function App() {
+  const elements = [1, 12, 5, 3, 11, 7];
   const [state, setState] = useState(() => {
-    return mapToVisualData([1, 12, 5, 3, 11, 7]);
+    return mapToVisualData(elements);
   });
   const [swapIndex, setSwapIndex] = useState(0);
 
@@ -21,6 +22,8 @@ function App() {
       <div className="row g-3 mb-3 mt-3">
         <div className="col-auto">
           <input
+            min={0}
+            max={elements.length - 2}
             type="number"
             className="form-control"
             name="swapIndex"
