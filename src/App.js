@@ -1,10 +1,9 @@
 import { ItemList } from "./item-list/item-list";
 import { useState } from "react";
-import { swap, mapToVisualData } from "./functions/util";
 
 function App() {
-  const elements = [1, 12, 5, 3, 11, 7, 8, 4, 15];  
-  const [swapIndex, setSwapIndex] = useState(0);
+  const elements = [1, 12, 5, 3, 11, 7, 8, 4, 15];
+  const [action, setAction] = useState({});
 
   return (
     <div className="container">
@@ -16,20 +15,22 @@ function App() {
             type="number"
             className="form-control"
             name="swapIndex"
-            defaultValue={swapIndex}
-            onChange={(e) => setSwapIndex(+e.target.value)}
+            defaultValue={0}
+            onChange={(e) =>
+              setAction({ type: "changeSwapIndex", swapIndex: +e.target.value })
+            }
           />
         </div>
         <div className="col-auto">
           <button
             className="btn btn-primary"
-            // onClick={() => setWrappedElements(swap(wrappedElements, swapIndex))}
+            onClick={() => setAction({ type: "swap" })}
           >
             Swap
           </button>
         </div>
       </div>
-      <ItemList items={elements} swapIndex={swapIndex} />
+      <ItemList items={elements} action={action} />
     </div>
   );
 }

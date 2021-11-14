@@ -27,10 +27,13 @@ export function mapToVisualData(l) {
     return a > i ? a : i;
   }, Number.MIN_SAFE_INTEGER);
 
-  return l.map((i, index) => ({
-    originalPosition: index,
-    value: i,
-    currentPosition: index,
-    height: (i / max) * 100,
-  }));
+  return {
+    swapIndex: 0,
+    items: l.map((i, index) => ({
+      originalPosition: index,
+      value: i,
+      currentPosition: index,
+      height: (i / max) * 100,
+    })),
+  };
 }
