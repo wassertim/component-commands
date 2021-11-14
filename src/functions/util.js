@@ -4,15 +4,16 @@ export function convertToHeights(items) {
   return items.map((i) => (i / max) * 100);
 }
 
+const findCurrentPositionIndex = (index, items) => items.find(i => i.currentPosition === index).originalPosition;
+
 export const swap = (state, index) => {
   const copy = [...state];
   if (index + 1 >= copy.length) {
     return copy;
-  }
-  // [copy[index], copy[index + 1]] = [copy[index + 1], copy[index]];
-  const [i, j] = [copy[index].order, copy[index + 1].order];
-  copy[i].order++;
-  copy[j].order--;
+  }  
+  const [i, j] = [findCurrentPositionIndex(index, copy), findCurrentPositionIndex(index+1, copy)];
+  copy[i].currentPosition++;
+  copy[j].currentPosition--;
 
   return copy;
 };

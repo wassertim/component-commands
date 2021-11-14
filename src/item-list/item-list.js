@@ -1,36 +1,15 @@
 import "./item-list.scss";
 import { convertToHeights } from "../functions/util";
 import { Item } from "./item/item";
-import React from "react";
 
 export function ItemList({ items }) {
-  const heights = convertToHeights(items.map(i => i.value));
-  console.log("items", items);
-  const references = {};
-
-  const getOrCreateRef = (id) => {
-    if (!references[id]) {
-      references[id] = React.createRef();
-    }
-
-    return references[id];
-  };
+  const heights = convertToHeights(items.map((i) => i.value));
 
   return (
-    <>
-      <div className="item-list group">
-        {heights.map((height, i) => {
-          return (
-            <Item
-              ref={getOrCreateRef(i)}
-              digit={items[i].value}
-              item={items[i]}
-              key={i}
-              height={height}
-            />
-          );
-        })}
-      </div>
-    </>
+    <div className="item-list group">
+      {heights.map((height, i) => {
+        return <Item key={i} item={items[i]} height={height} />;
+      })}
+    </div>
   );
 }
