@@ -3,10 +3,8 @@ import { useState } from "react";
 import { swap, mapToVisualData } from "./functions/util";
 
 function App() {
-  const elements = [1, 12, 5, 3, 11, 7];
-  const [state, setState] = useState(() => {
-    return mapToVisualData(elements);
-  });
+  const elements = [1, 12, 5, 3, 11, 7, 8, 4, 15];
+  const [wrappedElements, setWrappedElements] = useState(() => mapToVisualData(elements));
   const [swapIndex, setSwapIndex] = useState(0);
 
   return (
@@ -26,13 +24,13 @@ function App() {
         <div className="col-auto">
           <button
             className="btn btn-primary"
-            onClick={() => setState(swap(state, swapIndex))}
+            onClick={() => setWrappedElements(swap(wrappedElements, swapIndex))}
           >
             Swap
           </button>
         </div>
       </div>
-      <ItemList items={state} swapIndex={swapIndex} />
+      <ItemList items={wrappedElements} swapIndex={swapIndex} />
     </div>
   );
 }
