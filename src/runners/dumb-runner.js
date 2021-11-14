@@ -1,5 +1,7 @@
+const swap = (array, x, y) => ([array[x], array[y]] = [array[y], array[x]]);
+
 export let runState = {
-    isOnPause: false
+  isOnPause: false,
 };
 
 async function delay(timeout) {
@@ -9,7 +11,7 @@ async function delay(timeout) {
 }
 
 async function wait() {
-  while(runState.isOnPause) {
+  while (runState.isOnPause) {
     await delay(10);
   }
 
@@ -17,11 +19,17 @@ async function wait() {
 }
 
 export async function run(elements, setAction) {
-  for (let i = 0; i < elements.length - 1; i++) {
-    await wait();
-    setAction({type: "changeSwapIndex", swapIndex: i});
-    await delay(1000);
-    setAction({type: "swap"});
-    await delay(1000);
+  let m = elements.length;
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < m - i; j++) {
+      setAction({ type: "changeSwapIndex", swapIndex: j });
+      await delay(1000);
+      await wait();
+      if (elements[j] > elements[j + 1]) {
+        swap(elements, j, j + 1);
+        setAction({type: "swap"});
+        await delay(1000);
+      }
+    }
   }
 }
