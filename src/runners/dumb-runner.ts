@@ -1,10 +1,10 @@
-const swap = (array, x, y) => ([array[x], array[y]] = [array[y], array[x]]);
+const swap = (array: any[], x: number, y: number) => ([array[x], array[y]] = [array[y], array[x]]);
 
 export let runState = {
   isOnPause: false,
 };
 
-async function delay(timeout) {
+async function delay(timeout: number) {
   return new Promise((resolve) => {
     setTimeout(resolve, timeout);
   });
@@ -18,7 +18,7 @@ async function wait() {
   return Promise.resolve();
 }
 
-export async function run(elements, setAction) {
+export async function run(elements: any[], setAction: any) {
   let m = elements.length;
   for (let i = 0; i < m; i++) {
     for (let j = 0; j < m - i; j++) {

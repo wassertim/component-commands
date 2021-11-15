@@ -3,7 +3,7 @@ import { Item } from "./item/item";
 import { useReducer, useEffect } from "react";
 import { swap, mapToVisualData } from "../functions/util";
 
-function reducer(state, action) {
+function reducer(state: any, action: any) {
   switch (action.type) {
     case "swap":
       return { ...state, items: swap(state.items, state.swapIndex) };
@@ -14,18 +14,18 @@ function reducer(state, action) {
   }
 }
 
-export function ItemList({ items, swapIndex, action }) {
+export function ItemList({ items, action }: any) {
   const [wrappedElements, dispatch] = useReducer(
     reducer,
     mapToVisualData(items)
   );
   useEffect(() => {
     dispatch(action);
-  }, [action, swapIndex]);
+  }, [action]);
 
   return (
     <div className="item-list group">
-      {wrappedElements.items.map((item, i) => (
+      {wrappedElements.items.map((item: any, i: number) => (
         <Item
           key={i}
           item={item}

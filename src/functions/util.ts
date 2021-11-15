@@ -1,13 +1,13 @@
-const findCurrentPositionIndex = (index, items) =>
+const findCurrentPositionIndex = (index: number, items: any[]) =>
   items.find((i) => i.currentPosition === index).originalPosition;
 
-export function convertToHeights(items) {
+export function convertToHeights(items: any[]) {
   const max = items.reduce((a, i) => (a > i ? a : i), Number.MIN_SAFE_INTEGER);
 
   return items.map((i) => (i / max) * 100);
 }
 
-export const swap = (state, index) => {
+export const swap = (state: any, index: number) => {
   const copy = [...state];
   if (index + 1 >= copy.length) {
     return copy;
@@ -22,7 +22,7 @@ export const swap = (state, index) => {
   return copy;
 };
 
-export function mapToVisualData(l) {
+export function mapToVisualData(l: any[]) {
   const max = l.reduce((a, i) => {
     return a > i ? a : i;
   }, Number.MIN_SAFE_INTEGER);
