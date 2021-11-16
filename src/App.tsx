@@ -3,9 +3,14 @@ import { useState } from "react";
 import { run } from "./runners/dumb-runner";
 import { runState, runGenerator } from "./runners/generator-runner";
 
-function App() {   
+interface Action {
+  type?: string;
+  swapIndex?: number;
+}
+
+export default function() {   
   const elements = [1, 12, 5, 3, 11, 7, 8, 4, 15];
-  const [action, setAction] = useState({}); 
+  const [action, setAction] = useState<Action>({ type: 'changeSwapIndex', swapIndex: 0 }); 
 
   return (
     <div className="container">
@@ -52,5 +57,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
