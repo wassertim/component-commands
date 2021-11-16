@@ -1,10 +1,37 @@
 import { ItemList } from "./item-list/item-list";
 import { useState } from "react";
-import {runState, run} from "./runners/dumb-runner";
+import { run } from "./runners/dumb-runner";
 
-function App() {
+let runState = {
+  isOnPause: false,
+};
+
+async function delay(timeout: number) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, timeout);    
+  });
+}
+
+async function wait() {
+  while (runState.isOnPause) {
+    await delay(10);
+  }
+
+  return Promise.resolve();
+} 
+
+function App() {   
   const elements = [1, 12, 5, 3, 11, 7, 8, 4, 15];
-  const [action, setAction] = useState({});  
+  const [action, setAction] = useState({});
+  async function runGenerator(elements: any[], setAction: any) {
+    const steps = run(elements, setAction);
+        
+    for (let step of steps) {
+      await wait();
+      setAction(step);
+      await delay(300);
+    }
+  }
 
   return (
     <div className="container">
@@ -33,7 +60,7 @@ function App() {
         <div className="col-auto">
           <button
             className="btn btn-primary"
-            onClick={async () => await run(elements, setAction)}
+            onClick={async () => await runGenerator(elements, setAction)}
           >
             Run
           </button>
