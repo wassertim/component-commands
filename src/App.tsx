@@ -2,15 +2,11 @@ import { ItemList } from "./item-list/item-list";
 import { useState } from "react";
 import { run } from "./runners/dumb-runner";
 import { runState, runGenerator } from "./runners/generator-runner";
+import { Action } from "./types/action";
 
-interface Action {
-  type?: string;
-  swapIndex?: number;
-}
-
-export default function() {   
+export default function App() {
   const elements = [1, 12, 5, 3, 11, 7, 8, 4, 15];
-  const [action, setAction] = useState<Action>({ type: 'changeSwapIndex', swapIndex: 0 }); 
+  const [action, setAction] = useState<Action>({ type: 'changeSwapIndex', swapIndex: 0 });
 
   return (
     <div className="container">

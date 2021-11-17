@@ -2,13 +2,15 @@ import "./item-list.scss";
 import { Item } from "./item/item";
 import { useReducer, useEffect } from "react";
 import { swap, mapToVisualData } from "../functions/util";
+import { Action } from "../types/action";
+import { VisualData } from "../types/visual-data";
 
-function reducer(state: any, action: any) {
+function reducer(state: VisualData, action: Action): VisualData {
   switch (action.type) {
     case "swap":
       return { ...state, items: swap(state.items, state.swapIndex) };
     case "changeSwapIndex":
-      return { ...state, swapIndex: action.swapIndex };
+      return { ...state, swapIndex: action.swapIndex! };
     default:
       return state;
   }

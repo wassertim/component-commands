@@ -1,3 +1,5 @@
+import { VisualData } from "../types/visual-data";
+
 const findCurrentPositionIndex = (index: number, items: any[]) =>
   items.find((i) => i.currentPosition === index).originalPosition;
 
@@ -22,7 +24,7 @@ export const swap = (state: any, index: number) => {
   return copy;
 };
 
-export function mapToVisualData(l: any[]) {
+export function mapToVisualData(l: any[]): VisualData {
   const max = l.reduce((a, i) => {
     return a > i ? a : i;
   }, Number.MIN_SAFE_INTEGER);
