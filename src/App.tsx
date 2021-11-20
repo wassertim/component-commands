@@ -1,12 +1,12 @@
 import { ItemList } from "./item-list/item-list";
-import { useState } from "react";
+import { useReducer } from "react";
 import { run } from "./runners/dumb-runner";
 import { runState, runGenerator } from "./runners/generator-runner";
-import { Action } from "./types/action";
+import { actionReducer } from "./reducers/action.reducer";
 
 export default function App() {
   const elements = [1, 12, 5, 3, 11, 7, 8, 4, 15];
-  const [action, setAction] = useState<Action>({ type: 'changeSwapIndex', swapIndex: 0 });
+  const [action, setAction] = useReducer(actionReducer, { type: 'changeSwapIndex', swapIndex: 0 });
 
   return (
     <div className="container">
@@ -46,6 +46,14 @@ export default function App() {
             onClick={async () => runState.isOnPause = !runState.isOnPause}
           >
             Pause/Continue
+          </button>        
+        </div>
+        <div className="col-auto">
+          <button
+            className="btn btn-primary"
+            onClick={() => setAction({type: "goBack"})}
+          >
+            Back
           </button>
         </div>
       </div>
