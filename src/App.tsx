@@ -7,7 +7,7 @@ import { Action } from "./types/action";
 export default function App() {
   const elements = [12, 1, 5, 3, 11, 7, 8, 4, 15];
   const [action, setAction] = useState<Action>({ type: 'changeSwapIndex', swapIndex: 0 });
-  const [generator] = useState<Generator<Action>>(run(elements, setAction));
+  const [generator] = useState(run(elements));
 
   return (
     <div className="container">

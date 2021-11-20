@@ -7,21 +7,8 @@ export let runState = {
   isOnPause: false,
 };
 
-async function delay(timeout: number) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, timeout);
-  });
-}
 
-async function wait() {
-  while (runState.isOnPause) {
-    await delay(10);
-  }
-
-  return Promise.resolve();
-}
-
-export function* run(elements: any[], setAction: any) {
+export function* run(elements: any[]) {
   let m = elements.length;
   for (let i = 0; i < m; i++) {
     for (let j = 0; j < m - i; j++) {
