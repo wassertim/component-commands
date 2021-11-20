@@ -48,6 +48,22 @@ export default function App() {
             Pause/Continue
           </button>
         </div>
+        <div className="col-auto">
+          <button
+            className="btn btn-primary"
+            onClick={async () => setAction({ type: "goBack" })}
+          >
+            Prev
+          </button>
+        </div>
+        <div className="col-auto">
+          <button
+            className="btn btn-primary"
+            onClick={async () => setAction({ type: "goForward" })}
+          >
+            Next
+          </button>
+        </div>
       </div>
       <ItemList items={elements} action={action} />
     </div>

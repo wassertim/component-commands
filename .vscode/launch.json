@@ -1,10 +1,19 @@
 {
-    "configurations": [
+    "configurations": [        
         {
             "type": "pwa-chrome",
             "name": "http://localhost:3000",
             "request": "launch",
             "url": "http://localhost:3000"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Brave",
+            "runtimeExecutable": "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
+            "userDataDir": true,
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }
