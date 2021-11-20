@@ -18,16 +18,20 @@ export const swap = (state: any, index: number) => {
     findCurrentPositionIndex(index, copy),
     findCurrentPositionIndex(index + 1, copy),
   ];
-  copy[i].currentPosition++;
-  copy[j].currentPosition--;
+  copy[i] = { ...copy[i], currentPosition: copy[i].currentPosition + 1 };
+  copy[j] = { ...copy[j], currentPosition: copy[j].currentPosition - 1 };
 
   return copy;
 };
 
-export function mapToVisualData(l: any[]): VisualData {
-  const max = l.reduce((a, i) => {
+function findMaximum(l: any[]) {
+  return l.reduce((a, i) => {
     return a > i ? a : i;
   }, Number.MIN_SAFE_INTEGER);
+}
+
+export function mapToVisualData(l: any[]): VisualData {
+  const max = findMaximum(l);
 
   return {
     swapIndex: 0,

@@ -5,8 +5,9 @@ import { runState, runGenerator } from "./runners/generator-runner";
 import { Action } from "./types/action";
 
 export default function App() {
-  const elements = [1, 12, 5, 3, 11, 7, 8, 4, 15];
+  const elements = [12, 1, 5, 3, 11, 7, 8, 4, 15];
   const [action, setAction] = useState<Action>({ type: 'changeSwapIndex', swapIndex: 0 });
+  const [generator] = useState<Generator<Action>>(run(elements, setAction));
 
   return (
     <div className="container">
@@ -59,7 +60,12 @@ export default function App() {
         <div className="col-auto">
           <button
             className="btn btn-primary"
-            onClick={async () => setAction({ type: "goForward" })}
+            onClick={async () => {
+              const next = generator.next();
+              if (!next.done) {
+                setAction(next.value);
+              }
+            }}
           >
             Next
           </button>
