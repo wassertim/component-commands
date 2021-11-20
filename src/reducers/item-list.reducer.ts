@@ -35,7 +35,7 @@ function getNextState(s: VisualData) {
 export function reducer(state: VisualData, action: Action): VisualData {
   switch (action.type) {
     case "swap":
-      return newState({ ...state, items: swap(state.items, state.swapIndex) });      
+      return newState({ ...state, items: swap([...state.items], state.swapIndex) });      
     case "changeSwapIndex":      
       return newState({ ...state, swapIndex: action.swapIndex! });
     case "goBack":

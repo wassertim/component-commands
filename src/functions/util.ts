@@ -1,4 +1,4 @@
-import { VisualData } from "../types/visual-data";
+import { VisualData, VisualDataItem } from "../types/visual-data";
 
 const findCurrentPositionIndex = (index: number, items: any[]) =>
   items.find((i) => i.currentPosition === index).originalPosition;
@@ -9,19 +9,18 @@ export function convertToHeights(items: any[]) {
   return items.map((i) => (i / max) * 100);
 }
 
-export const swap = (state: any, index: number) => {
-  const copy = [...state];
-  if (index + 1 >= copy.length) {
-    return copy;
+export const swap = (items: VisualDataItem[], index: number) => {  
+  if (index + 1 >= items.length) {
+    return items;
   }
   const [i, j] = [
-    findCurrentPositionIndex(index, copy),
-    findCurrentPositionIndex(index + 1, copy),
+    findCurrentPositionIndex(index, items),
+    findCurrentPositionIndex(index + 1, items),
   ];
-  copy[i] = { ...copy[i], currentPosition: copy[i].currentPosition + 1 };
-  copy[j] = { ...copy[j], currentPosition: copy[j].currentPosition - 1 };
+  items[i] = { ...items[i], currentPosition: items[i].currentPosition + 1 };
+  items[j] = { ...items[j], currentPosition: items[j].currentPosition - 1 };
 
-  return copy;
+  return items;
 };
 
 function findMaximum(l: any[]) {
